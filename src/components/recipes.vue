@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div class="container">
+    <div class="container" v-if="loggedIn">
       <button
         type="button"
         class="btn btn-primary"
@@ -124,6 +124,9 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      {{ $router.push('login') }}
+    </div>
   </body>
 </template>
 
@@ -134,8 +137,8 @@ import "firebase/compat/auth";
 //import { collection, getDocs } from 'firebase/compat/firestore';
 import "firebase/compat/database";
 import "firebase/compat/storage";
+//import { mapGetters } from "vuex";
 
-//import { collection, getDocs } from "firebase/firestore";
 
 export default {
   data() {
@@ -148,6 +151,7 @@ export default {
       description: null,
       ingredients: null,
       duration: null,
+      loggedIn: this.$store.getters.user.loggedIn
     };
   },
   mounted: function () {

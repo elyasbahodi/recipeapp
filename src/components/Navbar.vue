@@ -18,6 +18,9 @@
           <template v-if="user.loggedIn">
             <router-link to="recipes" class="nav-link">Recipes</router-link>
           </template>
+          <template v-else>
+            {{ signOut() }}
+          </template>
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -39,6 +42,8 @@
         </ul>
       </div>
     </div>
+
+
   </nav>  
 </template>
 
@@ -59,7 +64,7 @@ export default {
         .signOut()
         .then(() => {
           this.$router.replace({
-            name: "home",
+            name: "login",
           });
         });
     }
